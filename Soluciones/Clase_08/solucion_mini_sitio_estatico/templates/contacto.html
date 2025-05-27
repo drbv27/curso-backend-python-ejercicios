@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ titulo }} - Mi Mini Sitio</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <nav>
+      <a href="{{ url_for('inicio') }}">Inicio</a> |
+      <a href="{{ url_for('quienes_somos') }}">Quiénes Somos</a> |
+      <a href="{{ url_for('servicios') }}">Servicios</a> |
+      <a href="{{ url_for('contacto') }}">Contacto</a>
+    </nav>
+    <h1>{{ titulo }}</h1>
+    {% if contacto %}
+    <p><strong>Email:</strong> {{ contacto.email }}</p>
+    <p><strong>Teléfono:</strong> {{ contacto.telefono }}</p>
+    <p><strong>Ciudad:</strong> {{ contacto.ciudad }}</p>
+    {% else %}
+    <p>Información de contacto no disponible.</p>
+    {% endif %}
+  </body>
+</html>

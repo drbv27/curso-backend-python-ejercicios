@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ titulo_pagina }}</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      h1 {
+        color: navy;
+      }
+      ul {
+        list-style-type: square;
+      }
+      li {
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>{{ titulo_pagina }}</h1>
+    {% if items_lista %}
+    <p>Estos son algunos de mis favoritos:</p>
+    <ul>
+      {% for item in items_lista %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No tengo favoritos para mostrar en este momento.</p>
+    {% endif %}
+  </body>
+</html>
