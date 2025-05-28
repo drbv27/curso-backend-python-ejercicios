@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% block titulo %}{{ titulo_pagina }}{% endblock %} {%
+block contenido_principal %}
+<h1>{{ titulo_pagina }}</h1>
+
+<section id="nueva-tarea">
+  <h2>Añadir Nueva Tarea:</h2>
+  <form method="POST" action="{{ url_for('agregar_tarea') }}">
+    <div>
+      <label for="desc_tarea">Descripción:</label>
+      <input
+        type="text"
+        id="desc_tarea"
+        name="descripcion_tarea"
+        required
+        size="50"
+      />
+    </div>
+    <button type="submit">Añadir Tarea</button>
+  </form>
+</section>
+
+<section id="lista-tareas">
+  <h2>Tareas Pendientes:</h2>
+  {% if tareas %}
+  <ul>
+    {% for tarea in tareas %}
+    <li>{{ tarea.texto }} {% if tarea.completada %}(Completada){% endif %}</li>
+    {% endfor %}
+  </ul>
+  <form
+    method="POST"
+    action="{{ url_for('limpiar_tareas') }}"
+    style="margin-top: 20px"
+  >
+    <button type="submit">Limpiar Todas las Tareas</button>
+  </form>
+  {% else %}
+  <p>¡Felicidades! No hay tareas pendientes. Puedes añadir una nueva.</p>
+  {% endif %}
+</section>
+{% endblock %}

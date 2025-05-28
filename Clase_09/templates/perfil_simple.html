@@ -1,0 +1,9 @@
+{% extends "base.html" %} {% block titulo %}{{ titulo_pagina }}{% endblock %} {%
+block contenido_principal %}
+<h1>{{ titulo_pagina }}</h1>
+<p>
+  Este es el perfil simple para el usuario:
+  <strong>{{ nombre_usuario }}</strong>.
+</p>
+<p>Aquí podrías mostrar más información del usuario si la tuvieras.</p>
+{% endblock %}

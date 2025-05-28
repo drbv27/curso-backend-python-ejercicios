@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block titulo %}Gestor de Tareas{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/tareas_style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>{% block encabezado_pagina %}Gestor de Tareas{% endblock %}</h1>
+      </header>
+
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+      <div class="flash-messages">
+        {% for category, message in messages %}
+        <div class="flash flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %}
+
+      <main>{% block contenido %}{% endblock %}</main>
+
+      <footer>
+        <p>&copy; 2025 - Mi Aplicación de Tareas con Flask</p>
+      </footer>
+    </div>
+  </body>
+</html>

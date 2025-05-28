@@ -1,0 +1,115 @@
+/* Soluciones/Clase_09/solucion_lista_tareas_avanzada/static/css/tareas_style.css */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  width: 80%;
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+header h1 {
+  color: #007bff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+/* Mensajes Flash */
+.flash-messages {
+  padding: 0;
+  margin: 1em 0;
+}
+.flash {
+  list-style-type: none;
+  padding: 0.75em 1.25em;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+.flash-success {
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border-color: #badbcc;
+}
+.flash-error {
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+}
+.flash-info {
+  color: #055160;
+  background-color: #cff4fc;
+  border-color: #b6effb;
+}
+.flash-warning {
+  color: #664d03;
+  background-color: #fff3cd;
+  border-color: #ffecb5;
+}
+
+#nueva-tarea-form,
+#lista-de-tareas {
+  margin-bottom: 30px;
+}
+#nueva-tarea-form input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: calc(100% - 100px); /* Ajustar para botón */
+  margin-right: 10px;
+}
+#nueva-tarea-form button,
+#lista-de-tareas button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#nueva-tarea-form button:hover,
+#lista-de-tareas button:hover {
+  background-color: #0056b3;
+}
+#lista-de-tareas ul {
+  list-style: none;
+  padding: 0;
+}
+#lista-de-tareas li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#lista-de-tareas li:last-child {
+  border-bottom: none;
+}
+#lista-de-tareas li.completada {
+  text-decoration: line-through;
+  color: #888;
+}
+#lista-de-tareas li form {
+  margin-left: 5px;
+}
+#lista-de-tareas li button.eliminar {
+  background-color: #dc3545;
+}
+#lista-de-tareas li button.eliminar:hover {
+  background-color: #c82333;
+}
+footer {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  font-size: 0.9em;
+  color: #777;
+}

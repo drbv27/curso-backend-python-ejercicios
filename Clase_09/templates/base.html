@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block titulo %}Mi Aplicación Flask{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    {% block estilos_adicionales %}{% endblock %}
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="{{ url_for('mostrar_tareas') }}">Lista de Tareas</a> |
+        <a href="{{ url_for('jinja_demo') }}">Demo Jinja2</a> |
+        <a href="{{ url_for('ver_perfil', username='Invitado') }}"
+          >Perfil Invitado</a
+        >
+      </nav>
+    </header>
+
+    <main class="container">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %}
+      <div class="flash-messages-container">
+        {% for category, message in messages %}
+        <div class="flash flash-{{ category|default('info') }}">
+          {{ message }}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %} {% block contenido_principal %}
+      <p>Contenido por defecto de la página.</p>
+      {% endblock %}
+    </main>
+
+    <footer>
+      <p>
+        &copy; {% if anio_actual %}{{ anio_actual }}{% else %}2025{% endif %} Mi
+        Aplicación Flask. Todos los derechos reservados.
+      </p>
+    </footer>
+
+    {% block scripts_adicionales %}{% endblock %}
+  </body>
+</html>

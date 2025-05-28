@@ -1,0 +1,48 @@
+{% extends "base_tareas.html" %} {% block titulo %}{{ titulo_pagina }} -
+Gestor{% endblock %} {% block encabezado_pagina %}{{ titulo_pagina }}{% endblock
+%} {% block contenido %}
+<section id="nueva-tarea-form">
+  <h2>Añadir Nueva Tarea</h2>
+  <form method="POST" action="{{ url_for('agregar_tarea_avanzada') }}">
+    <input
+      type="text"
+      name="descripcion_tarea"
+      placeholder="Descripción de la tarea"
+      required
+      size="40"
+    />
+    <button type="submit">Añadir</button>
+  </form>
+</section>
+
+<section id="lista-de-tareas">
+  <h2>Mis Tareas</h2>
+  {% if tareas %}
+  <ul>
+    {% for tarea in tareas %}
+    <li class="{{ 'completada' if tarea.completada else 'pendiente' }}">
+      {{ tarea.id }}. {{ tarea.texto }}
+      <form
+        method="POST"
+        action="{{ url_for('marcar_completada', tarea_id=tarea.id) }}"
+        style="display: inline"
+      >
+        <button type="submit">
+          {{ 'Desmarcar' if tarea.completada else 'Completar' }}
+        </button>
+      </form>
+      <form
+        method="POST"
+        action="{{ url_for('eliminar_tarea', tarea_id=tarea.id) }}"
+        style="display: inline"
+      >
+        <button type="submit" class="eliminar">Eliminar</button>
+      </form>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>¡No hay tareas pendientes! Añade una nueva para empezar.</p>
+  {% endif %}
+</section>
+{% endblock %}

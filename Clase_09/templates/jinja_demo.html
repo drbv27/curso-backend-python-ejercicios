@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% block titulo %}{{ titulo_pagina }}{% endblock %} {%
+block contenido_principal %}
+<h1>{{ titulo_pagina }}</h1>
+
+<h2>Saludo Condicional:</h2>
+{% if usuario %}
+<p>Bienvenido, {{ usuario.nombre | capitalize }}!</p>
+{% if usuario.es_admin %}
+<p><a href="#">Panel de Administración (simulado)</a></p>
+{% endif %} {% else %}
+<p>Bienvenido, {{ "invitado anónimo" | capitalize | default("Usuario") }}!</p>
+{% endif %}
+
+<h2>Lista de Productos (Bucle For):</h2>
+{% if productos %}
+<ul>
+  {% for producto in productos %}
+  <li>
+    {{ producto.nombre }} - Precio: ${{ producto.precio | round(2) }} {% if
+    producto.stock == 0 %}
+    <span style="color: red">(Agotado)</span>
+    {% elif producto.stock < 5 %}
+    <span style="color: orange">(¡Últimas {{ producto.stock }} unidades!)</span>
+    {% endif %}
+  </li>
+  {% else %} {# Se ejecuta si 'productos' está vacía o no existe #}
+  <li>No hay productos para mostrar.</li>
+  {% endfor %}
+</ul>
+<p>Total de tipos de producto: {{ productos | length }}</p>
+{% else %}
+<p>No se encontraron productos.</p>
+{% endif %}
+
+<h2>Filtro Truncate:</h2>
+<p>Texto original: "{{ texto_largo }}"</p>
+<p>
+  Texto truncado (30 chars, con '...'): "{{ texto_largo | truncate(30, true,
+  "...") }}"
+</p>
+<p>
+  Texto truncado (30 chars, sin cortar palabra): "{{ texto_largo | truncate(30,
+  false, "...") }}"
+</p>
+
+{% endblock %}
