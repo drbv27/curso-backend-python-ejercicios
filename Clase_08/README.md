@@ -1,54 +1,63 @@
-# 🌐 Clase 8: Introducción al Desarrollo Web con Flask (Parte 1)
+# 🐙 Clase 8: Control de Versiones con Git y GitHub
 
-¡Bienvenidos al emocionante mundo del desarrollo web! En esta clase, damos nuestros primeros pasos con Flask, un microframework de Python, para construir aplicaciones web.
+En esta clase fundamental, aprendimos a usar Git, la herramienta esencial para el control de versiones que todo desarrollador debe dominar.
 
 ## ✅ Temas Cubiertos
 
-- **Fundamentos Web**: Modelo Cliente-Servidor, protocolo HTTP (Peticiones/Respuestas, Métodos GET/POST, Códigos de Estado).
-- **Frameworks Web**: Qué son y por qué los usamos. Introducción a Flask como microframework.
-- **Instalación y Configuración**:
-  - Creación y activación de **Entornos Virtuales (`venv`)**.
-  - Instalación de Flask con `pip install Flask`.
-  - `requirements.txt` para gestionar dependencias.
-- **Aplicación "Hola Mundo" con Flask**:
-  - `app = Flask(__name__)`.
-  - `app.run(debug=True)`.
-- **Rutas (Routing)**:
-  - Decorador `@app.route('/ruta')` para mapear URLs a funciones de vista.
-  - **Rutas Dinámicas**: Capturar variables de la URL (ej: `@app.route('/usuario/<nombre>')`).
-  - **Conversores de Tipo**: `<int:id>`, `<float:precio>`.
-- **Métodos HTTP**: Especificar `methods=['GET', 'POST']` (introducción).
-- **Objeto `request`**: Acceder a datos de la petición (ej: `request.args.get('parametro')` para query strings).
-- **Generación de Respuestas**:
-  - Retornar strings y HTML simple.
-  - Retornar códigos de estado HTTP (ej: `return "Error", 404`).
-- **Plantillas HTML con `render_template()` (Introducción)**:
-  - Crear carpeta `templates/`.
-  - Sintaxis básica de Jinja2 `{{ variable }}` para pasar datos de Python al HTML.
-  - `return render_template('archivo.html', var_py=valor)`.
+- **Control de Versiones (VCS):** Entendimos por qué es crucial para el historial, la colaboración y la seguridad de nuestro código.
+- **Git vs. GitHub:** Diferenciamos entre Git (el software local) y GitHub (la plataforma remota de colaboración).
+- **Configuración Inicial:** `git config --global user.name "..."` y `user.email "..."`.
+- **Repositorio Local:**
+  - Creación con `git init`.
+  - **Los Tres Estados de Git:** Directorio de Trabajo -> Área de Preparación (Staging) -> Repositorio.
+  - **Flujo Básico:** `git add`, `git commit -m "mensaje"`.
+  - Revisión del estado (`git status`) y del historial (`git log`).
+- **Ramificación (Branching):**
+  - Concepto de ramas para aislar trabajo.
+  - Crear (`git branch nombre`), cambiar (`git checkout nombre` o `switch`), y atajo (`checkout -b nombre`).
+- **Fusión (Merging):**
+  - Integrar cambios de una rama a otra con `git merge`.
+- **Repositorios Remotos (GitHub):**
+  - Conectar un repositorio local: `git remote add origin <URL>`.
+  - Subir cambios: `git push`.
+  - Descargar cambios: `git pull`.
+  - Clonar un proyecto existente: `git clone <URL>`.
+- **Conflictos de Fusión:** Introducción a qué son y cómo se resuelven de forma básica.
 
-## 💻 Archivos de Código
+## 🧰 Guía Rápida de Comandos
 
-- [`app.py`](./app.py): Aplicación Flask principal que contiene todos los ejemplos de rutas (estáticas, dinámicas), manejo básico de `request.args`, y demostraciones de `render_template` desarrollados en clase, incluyendo los ejercicios de práctica.
-- `templates/`:
-  - [`mi_plantilla.html`](./templates/mi_plantilla.html): Plantilla HTML simple usada para demostrar cómo `render_template` pasa variables a un archivo HTML.
-  - [`favoritos.html`](./templates/favoritos.html): Plantilla HTML usada en el ejercicio de práctica para mostrar una lista de ítems usando un bucle Jinja2.
+| Comando                       | Descripción                                                                    |
+| :---------------------------- | :----------------------------------------------------------------------------- |
+| `git init`                    | Inicializa un nuevo repositorio Git en la carpeta actual.                      |
+| `git status`                  | Muestra el estado de los archivos en el repositorio.                           |
+| `git add <archivo>`           | Añade los cambios de un archivo al Staging Area. `git add .` para añadir todo. |
+| `git commit -m "msg"`         | Guarda los cambios del Staging Area en el repositorio con un mensaje.          |
+| `git log --oneline`           | Muestra un historial compacto de commits.                                      |
+| `git branch <nombre>`         | Crea una nueva rama.                                                           |
+| `git checkout <nombre>`       | Cambia a la rama especificada. `git checkout -b <nombre>` crea y cambia.       |
+| `git merge <rama>`            | Fusiona los cambios de `<rama>` en la rama actual.                             |
+| `git remote add origin <URL>` | Conecta tu repositorio local a un repositorio remoto en GitHub.                |
+| `git push -u origin <rama>`   | Sube los commits de tu rama local a la rama remota en GitHub.                  |
+| `git pull`                    | Descarga y fusiona los cambios desde el repositorio remoto a tu rama local.    |
+| `git clone <URL>`             | Crea una copia local de un repositorio remoto existente.                       |
 
 ## 🎯 Tareas / Ejercicios Propuestos
 
-1.  **Mini-Sitio Estático Personal:**
-    - Crea una aplicación Flask con al menos 3-4 páginas (ej: Inicio, Sobre Mí, Proyectos, Contacto).
-    - Cada página debe ser un archivo HTML separado dentro de la carpeta `templates/`.
-    - Cada página debe ser servida por una ruta distinta en tu `app.py` usando `render_template()`.
-    - Pasa al menos un título de página dinámico a cada plantilla.
-    - _(Opcional)_ Crea un archivo `static/style.css` básico y enlázalo en tus plantillas usando `{{ url_for('static', filename='style.css') }}`. (Esto requiere crear una carpeta `static` al mismo nivel que `templates`).
-2.  **Calculadora por URL (GET):**
-    - Crea una aplicación Flask con una ruta como `/calculadora/<operacion>/<float:num1>/<float:num2>`.
-    - El parámetro `operacion` debe ser un string (ej: "sumar", "restar", "multiplicar", "dividir").
-    - La función de vista asociada debe tomar estos tres parámetros, realizar la operación matemática correspondiente y retornar el resultado como un string formateado (ej: `"La suma de 10.5 y 3.2 es 13.7"`).
-    - Maneja el caso de la división por cero (puedes retornar un mensaje de error y un código de estado `400 Bad Request`).
-    - Maneja el caso de una operación no reconocida.
+1.  **Versionar un Proyecto Anterior:**
+    - Elige uno de los proyectos o prácticas que hiciste en las clases anteriores (ej: el de la calculadora de la Clase 2, o el gestor de notas de la Clase 7).
+    - Crea un **nuevo repositorio vacío** en GitHub para ese proyecto.
+    - En tu máquina local, navega a la carpeta de ese proyecto y ejecuta `git init`.
+    - Realiza un primer commit con todos los archivos del proyecto.
+    - Conecta tu repositorio local con el remoto que creaste en GitHub.
+    - Sube tus cambios a GitHub usando `git push`.
+2.  **Practicar el Flujo de Ramas:**
+    - En el repositorio que acabas de subir, crea una nueva rama llamada `feature/mejorar-readme`.
+    - En esa rama, edita el archivo `README.md` del proyecto, añadiendo una mejor descripción de lo que hace.
+    - Haz un commit con ese cambio en la rama `feature`.
+    - Vuelve a tu rama principal (`main`).
+    - Fusiona la rama `feature/mejorar-readme` en `main`.
+    - Sube los cambios de `main` a GitHub.
 
 ---
 
-_Puedes encontrar posibles soluciones a estos ejercicios propuestos en la carpeta `Soluciones/Clase_08/`._
+_Puedes encontrar una guía paso a paso de cómo resolver la Tarea 1 en la carpeta `Soluciones/Clase_08/`._
